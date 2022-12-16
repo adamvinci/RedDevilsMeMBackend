@@ -92,6 +92,8 @@ function getNextId() {
   const nextId = lastId + 1;
   return nextId;
 }
+
+// give point of connected user
 function getPoint(id) {
   const idAsNumber = parseInt(id, 10);
   const users = parse(jsonDbPath);
@@ -106,6 +108,7 @@ function getPoint(id) {
   return points;
 }
 
+// add point to connected user
 function addPoint(nbePoint, nbeErreu, userId) {
   const users = parse(jsonDbPath);
   const indexOfUserFound = users.findIndex((user) => user.id === userId);
@@ -118,6 +121,7 @@ function addPoint(nbePoint, nbeErreu, userId) {
   return users[indexOfUserFound];
 }
 
+// get top 10 ranking
 function getMorePoints() {
   const users = parse(jsonDbPath);
   const ranking = users.sort(mycomparator);

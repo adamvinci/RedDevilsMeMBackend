@@ -12,9 +12,8 @@ router.post('/login', async (req, res) => {
   const user = await login(username, password);
   if (!user) return res.sendStatus(401);
 
-  createCookieSessionData(req, user);
 
-  return res.json({ username: user.username, token: user.token ,id :user.id});
+  return res.json({ username: user.username, token: user.token });
 });
 
 router.post('/register', async (req, res) => {
@@ -23,8 +22,7 @@ router.post('/register', async (req, res) => {
   if (!username || !password) return res.sendStatus(400)
   const newUser = await register(username, password);
   if (!newUser) return res.sendStatus(401);
-  createCookieSessionData(req, newUser);
-  return res.json({ username: newUser.username, token: newUser.token,id :newUser.id });
+  return res.json({ username: newUser.username, token: newUser.token });
 });
 
 
@@ -34,9 +32,5 @@ router.get('/logout', (req, res) => {
   return res.sendStatus(200);
 });
 
-function createCookieSessionData(req, authenticatedUser) {
-  req.session.username = authenticatedUser.username;
-  req.session.token = authenticatedUser.token;
-  req.session.user_id = authenticatedUser.id
-}
+
 module.exports = router;

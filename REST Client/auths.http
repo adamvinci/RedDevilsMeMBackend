@@ -10,14 +10,20 @@ POST {{baseUrl}}/login
  }  
 
 
-###
-POST {{baseUrl}}/register
- Content-Type: application/json 
 
- {
-    "username":"u1",
+
+### Create a pizza by using the admin account
+# @name admin
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "username":"u0",
     "password":"u"
- }  
+}
+
+###
+@managerToken = {{admin.response.body.token}}
 
 ###
 GET {{baseUrl}}/logout
@@ -25,23 +31,18 @@ GET {{baseUrl}}/logout
 ###
 
 
-###
-POST {{baseUrl}}/loginAnonyme
- Content-Type: application/json 
-
- {
-    "username":"user3"
- }  
  
 
 
 ### 
 POST http://localhost:3000/message/addMessageUser
 Content-Type: application/json
+Authorization: {{managerToken}}
 
 {
    "content":"message4",
    "type":"suggestion"
+
 }
 
 ### 
@@ -67,6 +68,7 @@ PATCH  http://localhost:3000/message/1
 
 ###
 GET http://localhost:3000/message
+Authorization: {{managerToken}}
 
 
 ###

@@ -7,7 +7,7 @@ const jsonDbPath = path.join(__dirname, '/../data/message.json');
 // list of message
 function list(userId) {
     const message = parse(jsonDbPath);
-    const id =parseInt(userId,10)
+    const id = parseInt(userId, 10)
     const messages = message.filter((m) => m.user_id === id);
     return messages;
 }
@@ -20,7 +20,7 @@ function saveUserMessage(data) {
         id: getNextId(),
         content: data.content,
         type: data.type,
-        user_id: data.user_id,
+        user_id: data.id,
     }
     const string1 = "suggestion"
     const string2 = "question"

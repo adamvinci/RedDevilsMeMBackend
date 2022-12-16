@@ -4,7 +4,7 @@ const { readOneUserFromUsername } = require('../models/users');
 const jwtSecret = 'ilovemymbelgium!';
 
 const authorize = (req, res, next) => {
-  const { token } = req.session;
+  const token = req.get('authorization');
   if (!token) return res.sendStatus(401);
 
   try {
@@ -14,7 +14,7 @@ const authorize = (req, res, next) => {
     if (!existingUser) return res.sendStatus(401);
 
     req.user = existingUser; // request.user object is available in all other middleware functions
-    req.session.user_id = existingUser.id;
+
     return next();
   } catch (err) {
     return res.sendStatus(401);
