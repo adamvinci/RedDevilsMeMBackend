@@ -1,0 +1,90 @@
+
+@baseUrl = http://localhost:3000/auth
+ ####
+POST {{baseUrl}}/login
+ Content-Type: application/json 
+
+ {
+    "username":"admin",
+    "password":"admin"
+ }  
+
+
+###
+POST {{baseUrl}}/register
+ Content-Type: application/json 
+
+ {
+    "username":"u1",
+    "password":"u"
+ }  
+
+###
+GET {{baseUrl}}/logout
+
+###
+
+
+###
+POST {{baseUrl}}/loginAnonyme
+ Content-Type: application/json 
+
+ {
+    "username":"user3"
+ }  
+ 
+
+
+### 
+POST http://localhost:3000/message/addMessageUser
+Content-Type: application/json
+
+{
+   "content":"message4",
+   "type":"suggestion"
+}
+
+### 
+POST http://localhost:3000/message/addMessageVisitor
+Content-Type: application/json
+
+{
+   "content":"message1",
+   "type":"question"
+}
+
+###
+DELETE http://localhost:3000/message/1
+
+###
+PATCH  http://localhost:3000/message/1
+ Content-Type: application/json 
+
+{
+   "type":"question",
+   "content":"changement"
+}
+
+###
+GET http://localhost:3000/message
+
+
+###
+GET http://localhost:3000/point/getRanking
+
+
+
+###
+GET http://localhost:3000/point
+
+###
+GET http://localhost:3000/point
+
+###
+POST http://localhost:3000/point
+Content-Type: application/json
+
+{
+   "nbePoint":"2",
+   "nbeErreu":"3"
+}
