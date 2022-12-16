@@ -24,7 +24,6 @@ router.post('/register', async (req, res) => {
   const newUser = await register(username, password);
   if (!newUser) return res.sendStatus(401);
   createCookieSessionData(req, newUser);
-  console.log(newUser)
   return res.json({ username: newUser.username, token: newUser.token,id :newUser.id });
 });
 
@@ -39,6 +38,5 @@ function createCookieSessionData(req, authenticatedUser) {
   req.session.username = authenticatedUser.username;
   req.session.token = authenticatedUser.token;
   req.session.user_id = authenticatedUser.id
-  console.log(req.sess)
 }
 module.exports = router;
